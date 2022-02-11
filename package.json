@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-articles": "markdown-json -c md-json.json",
+    "build-articles-raw": "m2j -p -c -o dist/articles.json articles/*.md",
     "dev": "nuxt",
     "build": "nuxt build",
     "generate": "nuxt generate",
@@ -13,7 +14,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "github-markdown-css": "github:sindresorhus/github-markdown-css",
+    "highlight.js": "^11.4.0",
+    "markdown-it": "^12.3.2",
+    "markdown-it-anchor": "^8.4.1",
+    "markdown-it-toc-done-right": "^4.2.0",
     "markdown-json": "github:klaytonfaria/markdown-json",
+    "markdown-to-json": "github:scottstanfield/markdown-to-json",
     "nuxt": "^2.15.8"
+  },
+  "devDependencies": {
+    "sass": "^1.49.7",
+    "sass-loader": "^10.2.1"
   }
 }

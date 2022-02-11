@@ -11,7 +11,7 @@ Commands are for ubuntu.
 
 To see if card is able to be "awaken":
 
-~~~
+~~~bash
 sudo ethtool eth0  | egrep "^[[:blank:]]*Wake-on: (g|d)"
 ~~~
 
@@ -36,7 +36,7 @@ So `systemctl suspend` would be enough.
 ## disabling systemd management
 
 
-~~~
+~~~bash
 sudo sed -i s/".*HandlePowerKey.*"/"HandlePowerKey=ignore"/ /etc/systemd/logind.conf
 reboot
 ~~~
@@ -56,14 +56,14 @@ action=/etc/acpi/power.sh
 
 Create file : /etc/acpi/power.sh
 
-~~~
+~~~bash
 #!/bin/sh
 systemctl suspend
 ~~~
 
 then:
 
-~~~
+~~~console
 chmod +x /etc/acpi/power.sh
 ~~~
 
