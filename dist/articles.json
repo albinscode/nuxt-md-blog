@@ -1,0 +1,35 @@
+{
+  "app": {
+    "config": "md-json.json",
+    "cwd": "./",
+    "deterministicOrder": false,
+    "display": true,
+    "dist": "./dist/articles.json",
+    "filePattern": "**/*.md",
+    "ignore": "nothing",
+    "port": 3001,
+    "server": false,
+    "src": "./articles/",
+    "name": "markdown-json",
+    "metadata": true,
+    "version": "1.5.0"
+  },
+  "data": [
+    {
+      "id": "wakeonlan-server",
+      "contents": "<p>Commands are for ubuntu.</p>\n<h1 id=\"check-hardware-capability\">Check hardware capability</h1>\n<p>To see if card is able to be &quot;awaken&quot;:</p>\n<pre><code>sudo ethtool eth0  | egrep &quot;^[[:blank:]]*Wake-on: (g|d)&quot;</code></pre><p>if <code>g</code>, it is activated, if <code>d</code>, this is possible but not activated.</p>\n<p>See <a href=\"https://doc.ubuntu-fr.org/wakeonlan\">https://doc.ubuntu-fr.org/wakeonlan</a> for more information.</p>\n<h1 id=\"put-server-in-hibernation-or-suspend-it\">Put server in hibernation or suspend it</h1>\n<p>For me, suspending activity is enough. It will consume power but will be accessible in few seconds.</p>\n<p>See <a href=\"https://www.cyberciti.biz/faq/linux-command-to-suspend-hibernate-laptop-netbook-pc/\">https://www.cyberciti.biz/faq/linux-command-to-suspend-hibernate-laptop-netbook-pc/</a></p>\n<p>By pressing power button, the machine will be suspended or resumed (if already suspended)</p>\n<p>Now, how to suspend it?</p>\n<p>I would like to manually suspend it by pressing power button.</p>\n<p>So <code>systemctl suspend</code> would be enough.</p>\n<h2 id=\"disabling-systemd-management\">disabling systemd management</h2>\n<pre><code>sudo sed -i s/&quot;.*HandlePowerKey.*&quot;/&quot;HandlePowerKey=ignore&quot;/ /etc/systemd/logind.conf\nreboot</code></pre><p>Source: <a href=\"http://www.fit-pc.com/wiki/index.php/Application_note_-_Example_code_for_capturing_power_button_event_on_fitlet2_running_Linux\">http://www.fit-pc.com/wiki/index.php/Application_note_-_Example_code_for_capturing_power_button_event_on_fitlet2_running_Linux</a></p>\n<h2 id=\"setting-acpi\">Setting acpi</h2>\n<p>sudo apt install acpid-support</p>\n<p>Edit or create file : /etc/acpi/events/power</p>\n<pre><code>event=button/power\naction=/etc/acpi/power.sh</code></pre><p>Create file : /etc/acpi/power.sh</p>\n<pre><code>#!/bin/sh\nsystemctl suspend</code></pre><p>then:</p>\n<pre><code>chmod +x /etc/acpi/power.sh</code></pre><p>then restart the service:</p>\n<pre><code>sudo service acpid restart</code></pre><p>Hint, if this is still not working, this is probably due to the event name.</p>\n<p>To capture it you can run <code>acpi_listen</code> on the machine to see if event name is ok.</p>\n<p>In my case, I was trying event <code>/button/power</code> but it works only with <code>power (PBTN)</code></p>\n<h1 id=\"setting-remote-wakeonlan\">Setting remote wakeonlan</h1>\n<p>By default i&#39;ve set my router like this:</p>\n<ul>\n<li>redirect 8009 port to wol port (9)</li>\n<li>redirect this steam onto my specific miniserver via udp</li>\n</ul>\n<p>And that&#39;s all!</p>\n<p>I can use : <a href=\"https://www.depicus.com/wake-on-lan/woli\">https://www.depicus.com/wake-on-lan/woli</a></p>\n<p>And then provide my mac adress and ip with port 8009 and that&#39;s enough.</p>\n<p>A simple alias would be:</p>\n<pre><code>alias wolminiserver=&#39;wakeonlan -i $(dig +short my_host_name) -p 8009 my_mac_address</code></pre><p>Note the dig that allows to get ip from hostname ;)</p>\n",
+      "layout": "post",
+      "title": "wakeonlan server",
+      "date": "2021-12-12 10:18:10 +0100",
+      "tags": "suspend, wakeonlan, hibernate, ubuntu",
+      "excerpt": "<p>Commands are for ubuntu.</p>",
+      "meta": {
+        "relativePath": "wakeonlan-server.html",
+        "createdAt": "2022-02-11T20:01:01.938Z",
+        "lastModified": "2022-02-11T19:53:57.510Z",
+        "size": 2203,
+        "formattedSize": "2.2 KB"
+      }
+    }
+  ]
+}

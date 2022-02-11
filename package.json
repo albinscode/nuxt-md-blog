@@ -1,0 +1,19 @@
+{
+  "name": "nuxt-md-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-articles": "markdown-json -c md-json.json",
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "markdown-json": "github:klaytonfaria/markdown-json",
+    "nuxt": "^2.15.8"
+  }
+}
