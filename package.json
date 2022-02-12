@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "github-markdown-css": "github:sindresorhus/github-markdown-css",
+    "highlight-words": "^1.2.0",
     "highlight.js": "^11.4.0",
     "markdown-it": "^12.3.2",
     "markdown-it-anchor": "^8.4.1",
