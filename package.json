@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-articles": "markdown-json -c md-json.json",
-    "build-articles-raw": "m2j -p -c -o dist/articles.json articles/*.md",
+    "build-articles-raw": "m2j -p -c -o articles.json articles/*.md",
     "dev": "nuxt",
     "build": "nuxt build",
     "generate": "nuxt generate",
