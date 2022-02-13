@@ -1,0 +1,15 @@
+// This script allows to deploy the current build of the frontend application
+const Deployer = require('ssh-deploy-release');
+
+const options = {
+    localPath: 'dist',
+    host: 'ip_or_host_name',
+    username: 'account',
+    password: 'password',
+    deployPath: '/path/to/your/web/server/html/dir'
+};
+
+const deployer = new Deployer(options);
+deployer.deployRelease(() => {
+    console.log('Successfully deployed!')
+});

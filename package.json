@@ -9,7 +9,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "generate": "nuxt generate",
-    "start": "nuxt start"
+    "start": "nuxt start",
+    "deploy-prod": "node scripts/deploy-prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,7 +23,8 @@
     "markdown-it-toc-done-right": "^4.2.0",
     "markdown-json": "github:klaytonfaria/markdown-json",
     "markdown-to-json": "github:scottstanfield/markdown-to-json",
-    "nuxt": "^2.15.8"
+    "nuxt": "^2.15.8",
+    "ssh-deploy-release": "^3.0.5"
   },
   "devDependencies": {
     "sass": "^1.49.7",
