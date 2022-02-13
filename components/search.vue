@@ -14,6 +14,7 @@
 <script>
 
     import highlightWords from 'highlight-words';
+    import { DateTime } from 'luxon';
 
     // to improve we can use search highlighting with chunks: https://www.npmjs.com/package/highlight-words
     export default {
@@ -24,20 +25,29 @@
             }
         },
         computed: {
-            filteredArticles() {
-                return this.$store.state.filteredArticles
-            },
             articles() {
                 return this.$store.state.articles
-            }
+            },
         },
         methods: {
+            // a new array of articles from original articles
+            sortedArticles() {
+                console.log('getting sorted articles')
+                const result = [...this.articles].sort( (a, b) => {
+                    let diff = DateTime.fromSQL(b.date).diff(DateTime.fromSQL(a.date))
+                    console.log(`${a.date} and ${b.date} => ${diff}`)
+                    // to have most recent
+                    return diff
+                })
+                return result
+            },
             search: function () {
 
-                let foundArticles = this.articles.map(article => {
-                    return {...article}
-                })
+                console.log('search')
+                let foundArticles = this.sortedArticles()
                 if (this.term !== '') {
+                    // we wan't to modify this list, we have to copy it
+                    foundArticles = foundArticles.map( article => { return {...article }} )
                     foundArticles = foundArticles.filter( (article) => {
 
                         // an array of chunks with matching and non matching terms
@@ -65,12 +75,14 @@
                         return hasMatch
                     })
 
-
-
-
                 }
+                console.log('commit from search')
                 this.$store.commit('setFilteredArticles', foundArticles)
             }
+        },
+        async fetch() {
+            console.log('fetch')
+            this.$store.commit('setFilteredArticles', this.sortedArticles())
         }
     }
 </script>

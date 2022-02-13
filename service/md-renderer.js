@@ -3,7 +3,10 @@
 // some other plugins of markdown-it: https://www.npmjs.com/search?q=keywords:markdown-it-plugin
 
 const hljs = require('highlight.js');
-const anchor = require('markdown-it-anchor')
+// const anchor = require('markdown-it-anchor')
+import anchor from 'markdown-it-anchor'
+import toc from 'markdown-it-toc-done-right'
+
 export const md = require('markdown-it')({
     // Enable HTML tags in source
     html:         false,
@@ -43,14 +46,12 @@ export const md = require('markdown-it')({
     }
 })
 // to define the links on headers
-// md.use(anchor, {
-//     // permalink: anchor.permalink.headerLink({ safariReaderFix: true }),
+md.use(anchor, {
+    permalink: anchor.permalink.headerLink({ safariReaderFix: true }),
+    // permalink: true,
     // permalink: anchor.permalink.headerLink(),
-    // permalinkBefore: true,
-    // permalinkSymbol: '§',
-// })
+    permalinkBefore: true,
+    permalinkSymbol: '§',
+})
 // to define a table of content injectable via [toc] or ${toc}
-// md.use( require("markdown-it-toc-done-right"))
-
-
-
+md.use(toc)

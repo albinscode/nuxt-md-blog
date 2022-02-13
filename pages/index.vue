@@ -1,16 +1,22 @@
 <template>
 
     <div>
-
-        <h1>Articles</h1>
+        <h1>Articles list</h1>
         <div v-for="article in articles">
             <h2 v-html="article.title"></h2>
             <div>{{article.date}} - {{article.tags}}</div>
             <div v-html="article.content"></div>
+            <div class="article-separator">&nbsp;</div>
         </div>
     </div>
 
 </template>
+
+<style>
+    .article-separator {
+        background-color: white;
+    }
+</style>
 
 <script>
 
