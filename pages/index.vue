@@ -15,7 +15,14 @@
                             <span v-html="article.title"></span>
                         </NuxtLink>
                     </h1>
-                    <div>{{article.date}} - {{article.tags}}</div>
+                    <div style="padding-bottom: 10px">
+                        <div style="float: right">
+                            <code>{{article.date}}</code>
+                        </div>
+                        <div>
+                            <Tags :values="typeof article.tags === 'string' ? article.tags.split(',') : article.tags" />
+                        </div>
+                    </div>
                     <div v-html="article.content"></div>
                     <div class="article-separator">&nbsp;</div>
                 </div>

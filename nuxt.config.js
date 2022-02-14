@@ -10,8 +10,10 @@ export default {
         // '@/assets/css/main.scss'
         '@/node_modules/highlight.js/scss/arta.scss',
     ],
-
-   head: {
+    buildModules: [
+        '@nuxtjs/vuetify',
+    ],
+    head: {
        titleTemplate: '%s - Nuxt',
        meta: [
            { charset: 'utf-8' },

@@ -1,7 +1,8 @@
 <template>
-    <div>
-        <input type="text" v-model="term" placeholder="enter a term" name="term" @keyup="search"></input>
-        <button @click="search">search</button>
+    <div class="columns">
+
+        <v-text-field v-model="term" class="column" placeholder="enter a term to search" @keyup="search"></v-text-field>
+        <v-btn class="column" @click="search">search</v-btn>
     </div>
 </template>
 
