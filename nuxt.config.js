@@ -5,10 +5,10 @@ export default {
         // 'bulma',
         // CSS file in the project
         // '@/assets/css/main.css',
-        '@/node_modules/github-markdown-css/github-markdown-dark.css',
+        '@/node_modules/github-markdown-css/github-markdown.css',
         // SCSS file in the project
         // '@/assets/css/main.scss'
-        '@/node_modules/highlight.js/scss/atom-one-dark.scss',
+        '@/node_modules/highlight.js/scss/arta.scss',
     ]
 }
 

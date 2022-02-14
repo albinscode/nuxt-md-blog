@@ -35,7 +35,7 @@
                 console.log('getting sorted articles')
                 const result = [...this.articles].sort( (a, b) => {
                     let diff = DateTime.fromSQL(b.date).diff(DateTime.fromSQL(a.date))
-                    console.log(`${a.date} and ${b.date} => ${diff}`)
+                    /* console.log(`${a.date} and ${b.date} => ${diff}`) */
                     // to have most recent
                     return diff
                 })
@@ -44,6 +44,7 @@
             search: function () {
 
                 console.log('search')
+
                 let foundArticles = this.sortedArticles()
                 if (this.term !== '') {
                     // we wan't to modify this list, we have to copy it
@@ -53,7 +54,10 @@
                         // an array of chunks with matching and non matching terms
                         const chunks = highlightWords({
                             text: article.content,
-                            query: this.term
+                            query: this.term,
+                            // previous and next words after match too keep to have context
+                            clipBy: 10,
+                            matchExactly: true,
                         });
 
                         let hasMatch = false
@@ -80,9 +84,8 @@
                 this.$store.commit('setFilteredArticles', foundArticles)
             }
         },
-        async fetch() {
-            console.log('fetch')
-            this.$store.commit('setFilteredArticles', this.sortedArticles())
+        mounted() {
+            this.search()
         }
     }
 </script>
