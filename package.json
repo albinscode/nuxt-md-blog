@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bulma": "^0.9.3",
     "github-markdown-css": "github:sindresorhus/github-markdown-css",
     "highlight-words": "^1.2.0",
     "highlight.js": "^11.4.0",

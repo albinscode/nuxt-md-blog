@@ -1,24 +1,25 @@
 <template>
 
     <div>
-        <Search />
-        <div class="articles-quickjump">
-            <h1>Articles quick jump</h1>
-            <div class="table-of-contents" v-for="article in articles">
-                <a :href="'#' + article.id"><span v-html="article.title"></span></a>
-            </div>
+        <div class="columns">
+            <Search class="column" />
         </div>
+        <div class="columns is-desktop">
+            <Quickjump class="column is-one-quarter articles-quickjump" />
 
-        <h1>Articles list</h1>
-        <div v-for="article in articles">
-            <h1 :id="article.id" class="article-title">
-                <NuxtLink class="header-anchor" :to="{ path: '/article', query: { id: article.id }}">
-                    <span v-html="article.title"></span>
-                </NuxtLink>
-            </h1>
-            <div>{{article.date}} - {{article.tags}}</div>
-            <div v-html="article.content"></div>
-            <div class="article-separator">&nbsp;</div>
+            <div class="column is-three-quarters">
+                <h1 class="title">Articles list</h1>
+                <div v-for="article in articles">
+                    <h1 :id="article.id" class="article-title">
+                        <NuxtLink class="header-anchor" :to="{ path: '/article', query: { id: article.id }}">
+                            <span v-html="article.title"></span>
+                        </NuxtLink>
+                    </h1>
+                    <div>{{article.date}} - {{article.tags}}</div>
+                    <div v-html="article.content"></div>
+                    <div class="article-separator">&nbsp;</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -52,7 +53,6 @@
                 return this.$store.state.filteredArticles
             }
         },
-
 
         async fetch() {
 
