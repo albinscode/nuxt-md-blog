@@ -13,6 +13,9 @@ export default {
     buildModules: [
         '@nuxtjs/vuetify',
     ],
+    router: {
+        base: '/notes/',
+    },
     head: {
        titleTemplate: '%s - Nuxt',
        meta: [
